@@ -1,0 +1,79 @@
+{
+  "name": "onetab",
+  "displayName": "One Tab",
+  "description": "Save group file tab in one tab.",
+  "icon": "./icon/icon.png",
+  "publisher": "iamkulele",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/iamkulele/OneTab.git"
+	},
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+			{
+				"command": "onetab.saveActiveGroupFiles",
+				"title": "Save Active Group Tab",
+				"category": "OneTab"
+			},
+			{
+				"command": "onetab.saveAllGroupsFiles",
+				"title": "Save All Group Tabs",
+				"category": "OneTab"
+			}
+    ],
+    "keybindings": [
+			{
+				"key": "ctrl+s",
+				"mac": "cmd+s",
+				"command": "onetab.saveActiveGroupFiles",
+				"when": "openEditorsFocus"
+			},
+			{
+				"key": "ctrl+alt+s",
+				"mac": "cmd+alt+s",
+				"command": "onetab.saveAllGroupsFiles",
+				"when": "openEditorsFocus"
+			}
+		],
+		"configuration": 
+		{
+			"title": "One Tab",
+			"properties": {
+				"onetab.filePath": {
+					"type": "string",
+					"description": "The absolute file path to save the group tab. Recommend markdown file.",
+					"default": ""
+				}
+			}
+		}
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.95.0",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "eslint": "^9.13.0",
+    "typescript": "^5.6.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
